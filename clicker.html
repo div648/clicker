@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clicker</title>
+</head>
+
+<body>
+    <button onclick="pow()" style="padding: 100px;">Click</button>
+    <p id="out0"></p>
+    <script src="QTime.js"></script>
+    <script>
+        let flag = false;
+        let max_cm = Number(localStorage.max_cm);
+
+        function pow() {
+            flag = !flag;
+            if (flag) {
+                startTimer();
+            } else {
+                let clicks_m = 1000 / stopTimer();
+                if (clicks_m > max_cm) {
+                    max_cm = clicks_m;
+                    localStorage.max_cm = max_cm;
+
+                }
+                document.getElementById('out0').innerText = 'Clicks on minute: ' + clicks_m.toFixed(5) + 'ms\nMax value: ' + max_cm.toFixed(5) + 'ms';
+
+
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>
